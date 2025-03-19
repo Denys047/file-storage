@@ -1,3 +1,11 @@
 spring:
   application:
     name: xml-file-storage
+
+file:
+  storage:
+    dir:
+      name: json-files
+
+json:
+  indent-factor: 4
