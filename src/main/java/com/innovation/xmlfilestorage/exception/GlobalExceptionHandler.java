@@ -12,11 +12,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidFileNameException.class)
     public ResponseEntity<ProblemDetail> handleInvalidFileNameException(InvalidFileNameException ex) {
         return ResponseEntity.of(buildProblemDetail(ex.getMessage())).build();
-
     }
 
-    @ExceptionHandler(FileAlreadyExistsException.class)
-    public ResponseEntity<ProblemDetail> handleFileAlreadyExistsException(FileAlreadyExistsException ex) {
+    @ExceptionHandler(ResourceAlreadyExistsException.class)
+    public ResponseEntity<ProblemDetail> handleFileAlreadyExistsException(ResourceAlreadyExistsException ex) {
         return ResponseEntity.of(buildProblemDetail(ex.getMessage())).build();
     }
 
@@ -25,8 +24,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.of(buildProblemDetail(ex.getMessage())).build();
     }
 
-    @ExceptionHandler(FileNotFoundException.class)
-    public ResponseEntity<ProblemDetail> handleFileNotFoundException(FileNotFoundException ex) {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ProblemDetail> handleFileNotFoundException(ResourceNotFoundException ex) {
         return ResponseEntity.of(buildProblemDetail(ex.getMessage(), HttpStatus.NOT_FOUND)).build();
     }
 
