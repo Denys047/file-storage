@@ -34,40 +34,56 @@ file:
     mvn spring-boot:run
 
 
-API документація
+## API документація
 
 1. Upload XML файл
 POST /api/v1/files/upload
+
+Відповідь:
+
+    200 OK — файл успішно завантажено
+    400 Bad Request — якщо ім’я файлу не відповідає шаблону або файл з таким ім’ям вже існує
 
 Параметри:
     file — XML файл (Multipart)
 ![image](https://github.com/user-attachments/assets/fed6fbe7-bd39-484d-9e18-ba082e76abef)
 
 
-Якщо ім’я файлу не відповідає шаблону — повертається помилка 400 Bad Request.
-![image](https://github.com/user-attachments/assets/c2370627-924d-4099-a1bc-d6287a167afd)
-
-
 2. Update існуючий файл
 PUT /api/v1/files/upload
+
+Відповідь:
+
+    200 OK — файл успішно оновлено
+    400 Bad Request — якщо ім’я файлу не відповідає шаблону
+    404 Not Found — якщо файл для оновлення не існує
 
 Параметри:
     file — XML файл (Multipart)
 ![image](https://github.com/user-attachments/assets/e4c8c4f6-d9a5-4840-a597-ee08afaeddde)
 
-Якщо такого файлу не існує - повертається помилка 404 Not Found.
 
 3. Видалити файл
 DELETE /api/v1/files
+
+Відповідь:
+
+    200 OK — якщо файл успішно видалено
+    404 Not Found — якщо файл з таким ім'ям не знайдено
 
 Параметри:
     fileName — назва файлу
 ![image](https://github.com/user-attachments/assets/2ee0666a-1878-488e-a719-0147df0918f4)
 
-Якщо такого файлу не існує - повертається помилка 404 Not Found.
+
 
 4. Фільтрація файлів
 GET /api/v1/files/filter
+
+Відповідь:
+
+    200 OK — якщо знайдено файли, які відповідають критеріям
+    200 OK (з порожнім списком) — якщо файлів, що відповідають критеріям, не знайдено
 
 Параметри (опціонально):
     customer — ім'я клієнта
