@@ -10,16 +10,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.javapoet.FieldSpec;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Slf4j
 @Service
@@ -49,6 +48,41 @@ public class XmlFileProcessorService {
             throw new FileNotFoundException(fileName);
         }
     }
+
+    public List<String> getFiles(String customer, String type, String date) {
+        List<Path> paths = findFilesByParams(customer, type, date);
+        return paths.stream().map(it -> getFileByName(it.getFileName().toString())).collect(Collectors.toList());
+    }
+
+    private List<Path> findFilesByParams(String customer, String type, String date) {
+        Path uploadDirectory = directory.getUploadDirectory();
+        List<Path> result = List.of();
+        try (Stream<Path> filesPath = Files.find(uploadDirectory,
+                Integer.MAX_VALUE,
+                ((path, basicFileAttributes) ->
+                        isValid(path.getFileName().toString(), customer, type, date)))) {
+            result = filesPath.collect(Collectors.toList());
+        } catch (IOException e) {
+            e.getMessage();
+        }
+        return result;
+    }
+
+    private boolean isValid(String fileName, String customer, String type, String date) {
+        boolean matches = true;
+        var file = fileName.replace(".json", "");
+        if (customer != null) {
+            matches &= file.startsWith(customer);
+        }
+        if (type != null) {
+            matches &= file.contains(type);
+        }
+        if (date != null) {
+            matches &= file.endsWith(date);
+        }
+        return matches;
+    }
+
 
     public boolean update(String fileName, MultipartFile multipartFile) {
         Path filePath = directory.getUploadDirectory().resolve(convertXmlToJsonFileName(fileName));
