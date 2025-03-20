@@ -1,4 +1,4 @@
-package com.innovation.xmlfilestorage.dto;
+package com.innovation.filestorage.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-import static com.innovation.xmlfilestorage.common.Constants.*;
+import static com.innovation.filestorage.common.Constants.*;
 
 @Data
 @NoArgsConstructor

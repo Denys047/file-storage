@@ -1,4 +1,4 @@
-package com.innovation.xmlfilestorage.exception;
+package com.innovation.filestorage.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 

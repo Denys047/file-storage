@@ -1,4 +1,4 @@
-package com.innovation.xmlfilestorage.exception;
+package com.innovation.filestorage.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;

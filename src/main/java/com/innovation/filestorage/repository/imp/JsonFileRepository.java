@@ -1,8 +1,8 @@
-package com.innovation.xmlfilestorage.repository.imp;
+package com.innovation.filestorage.repository.imp;
 
-import com.innovation.xmlfilestorage.exception.ResourceNotFoundException;
-import com.innovation.xmlfilestorage.repository.FileRepository;
-import com.innovation.xmlfilestorage.utils.FileUploadDirectoryInitializer;
+import com.innovation.filestorage.exception.ResourceNotFoundException;
+import com.innovation.filestorage.repository.FileRepository;
+import com.innovation.filestorage.utils.FileUploadDirectoryInitializer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import static com.innovation.xmlfilestorage.common.Constants.*;
+import static com.innovation.filestorage.common.Constants.*;
 
 @Repository
 @RequiredArgsConstructor

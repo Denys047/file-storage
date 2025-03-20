@@ -1,7 +1,7 @@
-package com.innovation.xmlfilestorage.repository;
+package com.innovation.filestorage.repository;
 
 import java.nio.file.Path;
-import java.util.List;;
+import java.util.List;
 
 public interface FileRepository {
 

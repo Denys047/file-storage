@@ -1,8 +1,8 @@
-package com.innovation.xmlfilestorage.mapper;
+package com.innovation.filestorage.mapper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.innovation.xmlfilestorage.exception.XmlParsingException;
+import com.innovation.filestorage.exception.XmlParsingException;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONException;
 import org.json.XML;
@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.innovation.xmlfilestorage.common.Constants.INVALID_XML_FORMAT;
+import static com.innovation.filestorage.common.Constants.INVALID_XML_FORMAT;
 
 @Component
 @RequiredArgsConstructor
