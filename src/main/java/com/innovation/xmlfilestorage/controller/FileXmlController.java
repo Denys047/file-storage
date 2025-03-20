@@ -16,6 +16,16 @@ public class FileXmlController {
 
     private final XmlFileProcessorService xmlFileProcessorService;
 
+    @GetMapping
+    public ResponseEntity<String> getFileByName(@RequestParam("fileName") String fileName) {
+        if (!FileNameValidator.isValid(fileName)) {
+            throw new InvalidFileNameException();
+        }
+
+        var json = xmlFileProcessorService.getFileByName(fileName);
+        return ResponseEntity.ok(json);
+    }
+
     @PostMapping("/upload")
     public ResponseEntity<FileUploadResponse> upload(@RequestParam("file") MultipartFile multipartFile) {
         var fileName = multipartFile.getOriginalFilename();

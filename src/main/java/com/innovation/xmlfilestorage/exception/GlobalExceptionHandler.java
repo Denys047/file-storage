@@ -25,8 +25,17 @@ public class GlobalExceptionHandler {
         return ResponseEntity.of(buildProblemDetail(ex.getMessage())).build();
     }
 
+    @ExceptionHandler(FileNotFoundException.class)
+    public ResponseEntity<ProblemDetail> handleFileNotFoundException(FileNotFoundException ex) {
+        return ResponseEntity.of(buildProblemDetail(ex.getMessage(), HttpStatus.NOT_FOUND)).build();
+    }
+
     private ProblemDetail buildProblemDetail(String message) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, message);
+    }
+
+    private ProblemDetail buildProblemDetail(String message, HttpStatus status) {
+        return ProblemDetail.forStatusAndDetail(status, message);
     }
 
 }
