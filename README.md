@@ -27,11 +27,12 @@ file:
 
     Java 17+
     Maven
-    
-git clone <repo-url>
-cd xml-file-storage
-mvn clean install
-mvn spring-boot:run
+
+    git clone https://github.com/Denys047/file-storage.git
+    cd xml-file-storage
+    mvn clean install
+    mvn spring-boot:run
+
 
 API документація
 
