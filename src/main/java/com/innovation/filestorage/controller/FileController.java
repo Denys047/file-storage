@@ -52,7 +52,7 @@ public class FileController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteByName(@RequestParam("fileName") String fileName) {
+    public ResponseEntity<Void> delete(@RequestParam("fileName") String fileName) {
         return jsonFileService.delete(fileName) ?
                 ResponseEntity.ok().build() :
                 ResponseEntity.notFound().build();
