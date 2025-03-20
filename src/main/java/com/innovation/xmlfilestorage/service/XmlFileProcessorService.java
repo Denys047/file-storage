@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,13 +28,20 @@ public class XmlFileProcessorService {
     private int jsonIndentFactor;
 
     public void save(String fileName, MultipartFile multipartFile) {
-        Path filePath = directory.getUploadDirectory().resolve(fileName.replace(".xml", ".json"));
+        Path filePath = directory.getUploadDirectory().resolve(convertXmlToJsonFileName(fileName));
 
         if (Files.exists(filePath)) {
             throw new FileAlreadyExistsException(fileName);
         }
 
         toJson(filePath, fileName, multipartFile);
+    }
+
+    public boolean delete(String fileName) {
+        return directory.getUploadDirectory()
+                .resolve(fileName.concat(".json"))
+                .toFile()
+                .delete();
     }
 
     private void toJson(Path filePath, String fileName, MultipartFile multipartFile) {
@@ -44,6 +52,10 @@ public class XmlFileProcessorService {
             log.error("Failed to parse XML file: {}", fileName, e);
             throw new XmlParsingException(fileName);
         }
+    }
+
+    private String convertXmlToJsonFileName(String fileName) {
+        return fileName.replace(".xml", ".json");
     }
 
 }
