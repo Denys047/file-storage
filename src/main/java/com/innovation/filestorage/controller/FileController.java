@@ -1,11 +1,11 @@
-package com.innovation.xmlfilestorage.controller;
+package com.innovation.filestorage.controller;
 
-import com.innovation.xmlfilestorage.dto.ApiResponse;
-import com.innovation.xmlfilestorage.dto.FileUploadResponse;
-import com.innovation.xmlfilestorage.exception.InvalidFileNameException;
-import com.innovation.xmlfilestorage.service.JsonFileService;
-import com.innovation.xmlfilestorage.service.XmlFileService;
-import com.innovation.xmlfilestorage.utils.FileNameValidator;
+import com.innovation.filestorage.dto.ApiResponse;
+import com.innovation.filestorage.dto.FileUploadResponse;
+import com.innovation.filestorage.exception.InvalidFileNameException;
+import com.innovation.filestorage.service.JsonFileService;
+import com.innovation.filestorage.service.XmlFileService;
+import com.innovation.filestorage.utils.FileNameValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Map;
 
-import static com.innovation.xmlfilestorage.common.Constants.*;
+import static com.innovation.filestorage.common.Constants.*;
 
 @RestController
 @RequestMapping("/api/v1/files")
@@ -52,7 +52,7 @@ public class FileController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteByName(@RequestParam("fileName") String fileName) {
+    public ResponseEntity<Void> delete(@RequestParam("fileName") String fileName) {
         return jsonFileService.delete(fileName) ?
                 ResponseEntity.ok().build() :
                 ResponseEntity.notFound().build();

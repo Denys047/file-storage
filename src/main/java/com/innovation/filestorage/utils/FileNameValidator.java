@@ -1,4 +1,4 @@
-package com.innovation.xmlfilestorage.utils;
+package com.innovation.filestorage.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.experimental.UtilityClass;
@@ -7,8 +7,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 
-import static com.innovation.xmlfilestorage.common.Constants.*;
+import static com.innovation.filestorage.common.Constants.*;
 
 @UtilityClass
 public class FileNameValidator {
@@ -39,11 +40,15 @@ public class FileNameValidator {
             return false;
         }
         return FileNameComponents.parseFileName(fileName)
-                .filter(fileNameComponents ->
-                        startsWithLetter(fileNameComponents.customer) &&
-                        startsWithLetter(fileNameComponents.type) &&
-                        isValidDate(fileNameComponents.date))
+                .filter(validate())
                 .isPresent();
+    }
+
+    private Predicate<FileNameComponents> validate() {
+        return components ->
+                startsWithLetter(components.customer) &&
+                        startsWithLetter(components.type) &&
+                        isValidDate(components.date);
     }
 
     private static boolean startsWithLetter(String str) {

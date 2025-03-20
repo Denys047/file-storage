@@ -1,4 +1,4 @@
-package com.innovation.xmlfilestorage.utils;
+package com.innovation.filestorage.utils;
 
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;

@@ -6,7 +6,7 @@
     <groupId>com.innovation</groupId>
     <artifactId>xml-file-storage</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>xml-file-storage</name>
+    <name>file-storage</name>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

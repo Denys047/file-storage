@@ -1,7 +1,7 @@
-package com.innovation.xmlfilestorage.service;
+package com.innovation.filestorage.service;
 
-import com.innovation.xmlfilestorage.mapper.JsonMapper;
-import com.innovation.xmlfilestorage.repository.FileRepository;
+import com.innovation.filestorage.mapper.JsonMapper;
+import com.innovation.filestorage.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 
-import static com.innovation.xmlfilestorage.common.Constants.*;
+import static com.innovation.filestorage.common.Constants.*;
 
 @Service
 @RequiredArgsConstructor

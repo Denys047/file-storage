@@ -1,10 +1,11 @@
-package com.innovation.xmlfilestorage.common;
+package com.innovation.filestorage.common;
 
 import lombok.experimental.UtilityClass;
 
 /**
  * Constant variables used in the project
  */
+
 @UtilityClass
 public class Constants {
 
