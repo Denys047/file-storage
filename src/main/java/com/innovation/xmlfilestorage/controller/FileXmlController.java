@@ -29,6 +29,19 @@ public class FileXmlController {
         return ResponseEntity.ok(new FileUploadResponse(fileName, multipartFile.getSize()));
     }
 
+    @PutMapping("/upload")
+    public ResponseEntity<Void> update(@RequestParam("file") MultipartFile multipartFile) {
+        var fileName = multipartFile.getOriginalFilename();
+
+        if (!FileNameValidator.isValid(fileName)) {
+            throw new InvalidFileNameException();
+        }
+
+        return xmlFileProcessorService.update(fileName, multipartFile) ?
+                ResponseEntity.ok().build() :
+                ResponseEntity.notFound().build();
+    }
+
     @DeleteMapping
     public ResponseEntity<Void> deleteByName(@RequestParam("fileName") String fileName) {
         return xmlFileProcessorService.delete(fileName) ?

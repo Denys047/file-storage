@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 
 @Slf4j
 @Service
@@ -35,6 +36,15 @@ public class XmlFileProcessorService {
         }
 
         toJson(filePath, fileName, multipartFile);
+    }
+
+    public boolean update(String fileName, MultipartFile multipartFile) {
+        Path filePath = directory.getUploadDirectory().resolve(convertXmlToJsonFileName(fileName));
+        if (Files.exists(filePath)) {
+            toJson(filePath, fileName, multipartFile);
+            return true;
+        }
+        return false;
     }
 
     public boolean delete(String fileName) {
@@ -57,6 +67,5 @@ public class XmlFileProcessorService {
     private String convertXmlToJsonFileName(String fileName) {
         return fileName.replace(".xml", ".json");
     }
-
 }
 
