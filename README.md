@@ -1,4 +1,4 @@
-# XML File Storage Service
+# File Storage Service
 
 Це простий Spring Boot додаток для завантаження, зберігання та обробки XML файлів з подальшим перетворенням у JSON.
 
